@@ -13,31 +13,31 @@ function App() {
   const [quarter, setQuarter] = useState(1);
 
   const homeTouchdown = () => {
-      setScore({
-          ...score,
-          home: score.home + 7
-      });
+      setScore(prevScore => ({
+          ...prevScore,
+          home: prevScore.home + 7
+      }));
   }
 
   const homeFieldGoal = () => {
-      setScore({
-          ...score,
-          home: score.home + 3
-      });
+      setScore(prevScore => ({
+          ...prevScore,
+          home: prevScore.home + 3
+      }));
   }
 
   const awayTouchdown = () => {
-      setScore({
-          ...score,
-          away: score.away + 7
-      });
+      setScore(prevScore => ({
+          ...prevScore,
+          away: prevScore.away + 7
+      }));
   }
 
   const awayFiledGoal = () => {
-      setScore({
+      setScore(prevScore => ({
           ...score,
           away: score.away + 3
-      });
+      }));
   }
 
   const updateScore = {
@@ -51,7 +51,7 @@ function App() {
   const quarterHandler = {
     quarter,
     changeQuarter: () => {
-      setQuarter(quarter => quarter < 4 ? quarter + 1 : quarter);
+      setQuarter(prevQuarter => prevQuarter < 4 ? prevQuarter + 1 : prevQuarter);
     }
   }
 
