@@ -15,6 +15,11 @@ const Timer = ({changeQuarter}) => {
 
     const toggle = () => setIsRunning(!isRunning);
 
+    const reset = () => {
+        setSeconds(initialTimer);
+        setIsRunning(false);
+    }
+
     useEffect(() => {
         let interval = null;
         if (isRunning) {
@@ -23,8 +28,8 @@ const Timer = ({changeQuarter}) => {
             }, 1000);
             if(seconds === 0) {
                 clearInterval(interval);
+                reset();
                 changeQuarter();
-                setIsRunning(false);
             }
         } else if (!isRunning) {
             clearInterval(interval);
@@ -36,10 +41,10 @@ const Timer = ({changeQuarter}) => {
     }, [seconds, isRunning]);
 
     return (
-        <Fragment>
+        <div className="timer-container">
             <div className="timer">{convertToString(seconds)}</div>
             <button onClick={toggle}>{isRunning ? 'Pause' : 'Start'}</button>
-        </Fragment>
+        </div>
     );
 }
 
