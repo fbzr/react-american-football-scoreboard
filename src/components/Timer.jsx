@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Timer = ({changeQuarter}) => {
     const initialTimer = 900; // 900seconds === 15min
@@ -29,7 +29,11 @@ const Timer = ({changeQuarter}) => {
             if(seconds === 0) {
                 clearInterval(interval);
                 reset();
-                changeQuarter();
+                function setQuarter() {
+                    changeQuarter();
+                }
+
+                setQuarter();
             }
         } else if (!isRunning) {
             clearInterval(interval);
@@ -37,8 +41,8 @@ const Timer = ({changeQuarter}) => {
         
         return () => {
             clearInterval(interval);
-        };
-    }, [seconds, isRunning]);
+        }
+    }, [seconds, isRunning, changeQuarter]);
 
     return (
         <div className="timer-container">
